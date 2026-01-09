@@ -10,12 +10,12 @@ import {
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import { api } from '@/lib/api-client';
 
 // import.meta.env.VITE_API_BASE_URL ||
-const baseURL = 'http://localhost:3000/api/v1';
 export function LoginForm({ className, ...props }) {
   const navigate = useNavigate();
   const signup = async (body) => {
@@ -29,7 +29,7 @@ export function LoginForm({ className, ...props }) {
     //     'Content-Type': 'application/json',
     //   },
     // });
-    return await axios.post(`${baseURL}/users/login`, body);
+    return await api.post(`/users/login`, body);
     // console.log(res);
   };
 

@@ -10,20 +10,16 @@ import {
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { toast } from 'sonner';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { api } from '@/lib/api-client';
 
 export function ResetPasswordForm({ className, ...props }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  console.log(
-    '🚀 ~ ResetPasswordForm ~ searchParams:',
-    searchParams.get('token')
-  );
-  const baseURL = 'http://localhost:3000/api/v1';
+
   const resetPassword = async (body) =>
-    axios.patch(`${baseURL}/users/reset-password/${body.token}`, body);
+    api.patch(`/users/reset-password/${body.token}`, body);
 
   const { mutate, isPending } = useMutation({
     mutationFn: resetPassword,

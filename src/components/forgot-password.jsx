@@ -9,14 +9,13 @@ import {
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
+import { api } from '@/lib/api-client';
 
 export function ForgotPasswordForm({ className, ...props }) {
-  const baseURL = 'http://localhost:3000/api/v1';
   const forgotPassword = async (body) =>
-    axios.post(`${baseURL}/users/forgot-password`, body);
+    api.post(`/users/forgot-password`, body);
 
   const { mutate, isPending } = useMutation({
     mutationFn: forgotPassword,
