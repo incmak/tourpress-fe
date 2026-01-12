@@ -42,7 +42,7 @@ export function LoginForm({ className, ...props }) {
     onError: (error) => {
       console.log('🚀 ~ LoginForm ~ error:', error);
       toast.error('Login failed.', {
-        description: error.response.data.message || 'Please try again.',
+        description: error?.response?.data.message || 'Please try again.',
       });
     },
   });

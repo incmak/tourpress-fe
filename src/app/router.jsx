@@ -1,4 +1,5 @@
 import { Spinner } from '@/components/spinner';
+import { ProtectedRoute } from '@/utils/protected-route';
 import { lazy, Suspense } from 'react';
 
 const Login = lazy(() => import('./routes/auth/login'));
@@ -6,7 +7,7 @@ const Signup = lazy(() => import('./routes/auth/signup'));
 const ForgotPassword = lazy(() => import('./routes/auth/forgot-password'));
 const ResetPassword = lazy(() => import('./routes/auth/reset-password'));
 
-export const routes = [
+const authRoutes = [
   {
     path: '/login',
     element: (
@@ -39,11 +40,41 @@ export const routes = [
       </Suspense>
     ),
   },
+];
+
+const adminRoutes = [
   {
-    path: '/dashboard',
+    path: '/',
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: 'dashboard',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <h1>Dashboard</h1>
+          </Suspense>
+        ),
+      },
+      {
+        path: 'users',
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <h1>Users</h1>
+          </Suspense>
+        ),
+      },
+    ],
+  },
+];
+
+export const routes = [
+  ...authRoutes,
+  ...adminRoutes,
+  {
+    path: '*',
     element: (
       <Suspense fallback={<Spinner />}>
-        <h1>Dashboard</h1>
+        <h1>404 - Not Found</h1>
       </Suspense>
     ),
   },
