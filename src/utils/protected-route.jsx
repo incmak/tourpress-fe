@@ -9,6 +9,7 @@ export function ProtectedRoute() {
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: getMyProfile,
     queryKey: ['user', 'me'],
+    refetchOnMount: false,
     // refetchOnWindowFocus: true
   });
 

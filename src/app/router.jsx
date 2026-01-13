@@ -2,6 +2,7 @@ import { Spinner } from '@/components/spinner';
 import { ProtectedRoute } from '@/utils/protected-route';
 import { lazy, Suspense } from 'react';
 import Dashboard from './routes/dashboard';
+import { MainLayout } from '@/components/layouts/main-layout';
 
 const Login = lazy(() => import('./routes/auth/login'));
 const Signup = lazy(() => import('./routes/auth/signup'));
@@ -49,20 +50,26 @@ const adminRoutes = [
     element: <ProtectedRoute />,
     children: [
       {
-        path: 'dashboard',
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <Dashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: 'users',
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <h1>Users</h1>
-          </Suspense>
-        ),
+        path: '',
+        element: <MainLayout />,
+        children: [
+          {
+            path: 'dashboard',
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <Dashboard />
+              </Suspense>
+            ),
+          },
+          {
+            path: 'users',
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <h1>Users</h1>
+              </Suspense>
+            ),
+          },
+        ],
       },
     ],
   },
