@@ -34,35 +34,20 @@ import { api } from '@/lib/api-client';
 import { useQuery } from '@tanstack/react-query';
 
 const data = {
-  user: {
-    name: 'Mueen',
-    email: 'mueen@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   navMain: [
     {
       title: 'Dashboard',
-      url: '#',
+      url: '/dashboard',
       icon: IconDashboard,
     },
     {
-      title: 'Lifecycle',
-      url: '#',
-      icon: IconListDetails,
+      title: 'Tours',
+      url: '/tours',
+      icon: IconUsers,
     },
     {
-      title: 'Analytics',
-      url: '#',
-      icon: IconChartBar,
-    },
-    {
-      title: 'Projects',
-      url: '#',
-      icon: IconFolder,
-    },
-    {
-      title: 'Team',
-      url: '#',
+      title: 'Users',
+      url: '/users',
       icon: IconUsers,
     },
   ],
@@ -133,19 +118,9 @@ const data = {
   ],
   documents: [
     {
-      name: 'Data Library',
-      url: '#',
-      icon: IconDatabase,
-    },
-    {
       name: 'Reports',
       url: '#',
       icon: IconReport,
-    },
-    {
-      name: 'Word Assistant',
-      url: '#',
-      icon: IconFileWord,
     },
   ],
 };
@@ -169,10 +144,10 @@ export function AppSidebar({ ...props }) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className='data-[slot=sidebar-menu-button]:!p-1.5'
+              className='data-[slot=sidebar-menu-button]:p-1.5!'
             >
               <a href='#'>
-                <IconInnerShadowTop className='!size-5' />
+                <IconInnerShadowTop className='size-5!' />
                 <span className='text-base font-semibold'>Acme Inc.</span>
               </a>
             </SidebarMenuButton>

@@ -3,6 +3,7 @@ import { ProtectedRoute } from '@/utils/protected-route';
 import { lazy, Suspense } from 'react';
 import Dashboard from './routes/dashboard';
 import { MainLayout } from '@/components/layouts/main-layout';
+import Users from './routes/users/users';
 
 const Login = lazy(() => import('./routes/auth/login'));
 const Signup = lazy(() => import('./routes/auth/signup'));
@@ -65,7 +66,7 @@ const adminRoutes = [
             path: 'users',
             element: (
               <Suspense fallback={<Spinner />}>
-                <h1>Users</h1>
+                <Users />
               </Suspense>
             ),
           },

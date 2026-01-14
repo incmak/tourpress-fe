@@ -13,8 +13,6 @@ export function ProtectedRoute() {
     // refetchOnWindowFocus: true
   });
 
-  console.log(data);
-
   if (isLoading) return <Spinner />;
 
   if (!isSuccess) {
