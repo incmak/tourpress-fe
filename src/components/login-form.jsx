@@ -59,8 +59,6 @@ export function LoginForm({ className, ...props }) {
       email: email.value,
       password: password.value,
     });
-
-    // Handle form submission logic here
   };
   return (
     <div className={cn('flex flex-col gap-6 w-full', className)} {...props}>
