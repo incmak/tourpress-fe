@@ -23,7 +23,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { api } from '@/lib/api-client';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
@@ -31,6 +31,7 @@ export function NavUser({ user }) {
   const { isMobile } = useSidebar();
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const logout = () => api.get('/users/logout');
 
   const { mutate, isPending } = useMutation({
@@ -38,6 +39,7 @@ export function NavUser({ user }) {
     onSuccess: () => {
       navigate('/login');
       toast.success('Logged out successfully!');
+      queryClient.clear();
     },
     onError: (error) => {
       console.error('🚀 ~ Dashboard ~ error:', error);
